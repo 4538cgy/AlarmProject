@@ -11,9 +11,20 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:theme="@style/ViewBasetheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="@{signUpActivity::onCreateUser}"
+            android:text="구글로 회원가입 테스"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,5 +8,9 @@
         <item name="colorControlNormal">@color/white</item>
     </style>
 
+    <style name="ViewBasetheme" parent="AppBaseTheme">
+        <item name="android:background">@drawable/shape_bg_linear_gradient_default</item>
+    </style>
+
     <style name="gradBaseTheme" parent="AppBaseTheme"/>
 </resources>
