@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.HiltAndroidApp
 
 abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel>(
     @LayoutRes
