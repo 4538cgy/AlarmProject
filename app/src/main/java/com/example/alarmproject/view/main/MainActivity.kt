@@ -20,7 +20,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.a
         println("hello world")
 
         repeatOnStarted {
-            viewModel.eventFlow.collect{ eventHandle(it)}
+            viewModel.eventFlow.collect { eventHandle(it) }
         }
     }
 
@@ -28,7 +28,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.a
         is BaseViewModel.Event.TouchEvent -> {
             //todo
         }
-        else -> { }
+        else -> {
+        }
     }
 
 

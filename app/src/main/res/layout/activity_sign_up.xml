@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.main.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.signup.SignUpActivity">
 
     <data>
-
         <variable
-            name="mainActivity"
-            type="com.example.alarmproject.view.main.MainActivity" />
-        <variable
-            name="vm"
-            type="com.example.alarmproject.view.main.MainViewModel" />
+            name="signUpActivity"
+            type="com.example.alarmproject.view.signup.SignUpActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:theme="@style/ViewBasetheme"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
+
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:onClick="@{()-> vm.test()}"
-            android:text="테스트"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="@{signUpActivity::onCreateUser}"
+            android:text="구글로 회원가입 테스"
             />
 
 

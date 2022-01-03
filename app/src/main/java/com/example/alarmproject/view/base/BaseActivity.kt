@@ -7,6 +7,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.HiltAndroidApp
 
 abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel>(
     @LayoutRes
@@ -24,7 +28,4 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel>(
             setVariable(BR.vm, viewModel)
         }
     }
-
-
-
 }
