@@ -1,20 +1,34 @@
 package com.example.alarmproject.view.spalsh
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.viewModels
 import com.example.alarmproject.R
 import com.example.alarmproject.databinding.ActivitySplashBinding
+import com.example.alarmproject.util.extension.doDelayed
 import com.example.alarmproject.view.base.BaseActivity
+import com.example.alarmproject.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
+@SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
-class SplashActivity : BaseActivity<ActivitySplashBinding,SplashViewModel>(R.layout.activity_splash) {
+class SplashActivity :
+    BaseActivity<ActivitySplashBinding, SplashViewModel>(R.layout.activity_splash) {
 
-    override val viewModel : SplashViewModel by viewModels()
+    override val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("hello splash")
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+
+        doDelayed(2500) {
+            finish()
+            startActivity(Intent(this, MainActivity::class.java))
+        }
     }
 }

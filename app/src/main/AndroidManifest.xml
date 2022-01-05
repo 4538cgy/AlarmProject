@@ -10,21 +10,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/gradBaseTheme">
+
         <activity
             android:name=".view.signup.SignUpActivity"
             android:exported="true" />
-        <activity
-            android:name=".view.spalsh.SplashActivity"
-            android:exported="true" />
+
         <activity
             android:name=".view.main.MainActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".view.TestActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
