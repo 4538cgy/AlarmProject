@@ -2,6 +2,7 @@ package com.example.alarmproject.view.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import com.example.alarmproject.R
 import com.example.alarmproject.databinding.ActivityMainBinding
 import com.example.alarmproject.util.extension.repeatOnStarted
@@ -22,6 +23,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.a
         repeatOnStarted {
             viewModel.eventFlow.collect { eventHandle(it) }
         }
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainActivity) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navController.navigate(R.id.action_homeFragment_to_mainActivity)
     }
 
     private fun eventHandle(event: BaseViewModel.Event) = when (event) {
