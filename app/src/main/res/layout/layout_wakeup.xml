@@ -45,6 +45,7 @@
         android:layout_height="wrap_content"
         android:stateListAnimator="@null"
         android:text="@string/layout_wakeup_btn_retry_alarm"
+        android:textStyle="bold"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
