@@ -2,6 +2,7 @@
     <string name="app_name">AlarmProject</string>
 
     <string name="activity_splash_tv_name">클릭째깍</string>
+
     <string name="layout_wakeup_btn_retry_alarm">다시 알림</string>
     <string name="layout_wakeup_daily_alarm">주간 알람</string>
     <string name="layout_wakeup_btn_stop_alarm">알람 중단</string>
