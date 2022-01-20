@@ -34,6 +34,13 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
+    sealed class Result<out R> {
+        data class Success<out T>(val data: T) : Result<T>()
+        data class Error(val exception: Exception) : Result<Nothing>()
+        data class ErrorCode(val code: Int) : Result<Nothing>()
+        data class Message(val message: String) : Result<String>()
+    }
+
     sealed class Event {
         data class TouchEvent(val value: Any) : Event()
         data class ResponseCommonData<ITEM>(val value: ITEM) : Event()

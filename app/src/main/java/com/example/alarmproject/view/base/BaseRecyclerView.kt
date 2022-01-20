@@ -33,6 +33,12 @@ class BaseRecyclerView {
             }
         }
 
+        fun addList(items: List<ITEM>?){
+            items?.forEach {
+                this.items.add(it)
+            }
+        }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<B> {
             val view = LayoutInflater.from(parent.context).inflate(layoutResId, parent, false).apply {
                 setOnClickListener { v -> callBack.accept(Pair(items[v.tag as Int], 123)) }
