@@ -3,4 +3,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="word_alarm_notice">후에 주간 알람이 울립니다.</string>
+
+    <string name="activity_splash_tv_name">클릭째깍</string>
+
+    <string name="layout_wakeup_btn_retry_alarm">다시 알림</string>
+    <string name="layout_wakeup_daily_alarm">주간 알람</string>
+    <string name="layout_wakeup_btn_stop_alarm">알람 중단</string>
+    <string name="layout_wakeup_notice">진짜 일어나셨을때만 누르세요!!</string>
 </resources>
