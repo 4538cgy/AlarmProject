@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.alarmproject.util.flow.MutableEventFlow
 import com.example.alarmproject.util.flow.asEventFlow
 import com.google.firebase.auth.FirebaseAuth
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -19,6 +20,8 @@ abstract class BaseViewModel : ViewModel() {
     val eventsChannel = Channel<AllEvents>()
     val allEventsFlow = eventsChannel.receiveAsFlow()
 
+    var disposable = CompositeDisposable()
+
     open fun event(event: Event) {
         viewModelScope.launch {
             _eventFlow.emit(event)
@@ -29,6 +32,13 @@ abstract class BaseViewModel : ViewModel() {
         viewModelScope.launch {
             _dataFlow.emit(data)
         }
+    }
+
+    sealed class Result<out R> {
+        data class Success<out T>(val data: T) : Result<T>()
+        data class Error(val exception: Exception) : Result<Nothing>()
+        data class ErrorCode(val code: Int) : Result<Nothing>()
+        data class Message(val message: String) : Result<String>()
     }
 
     sealed class Event {
@@ -46,5 +56,10 @@ abstract class BaseViewModel : ViewModel() {
         data class Message(val message: String) : AllEvents()
         data class ErrorCode(val code: Int) : AllEvents()
         data class Error(val error: String) : AllEvents()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
 }

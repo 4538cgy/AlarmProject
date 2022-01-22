@@ -19,7 +19,7 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel>(@LayoutRes priv
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         with(binding) {
-            lifecycleOwner = this@BaseFragment
+            lifecycleOwner = this@BaseFragment.viewLifecycleOwner
             setVariable(BR.vm, viewModel)
         }
         return binding.root
