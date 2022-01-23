@@ -10,6 +10,7 @@ import com.example.alarmproject.databinding.ActivitySplashBinding
 import com.example.alarmproject.util.extension.doDelayed
 import com.example.alarmproject.view.base.BaseActivity
 import com.example.alarmproject.view.main.MainActivity
+import com.example.alarmproject.view.signup.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("CustomSplashScreen")
@@ -28,7 +29,7 @@ class SplashActivity :
 
         doDelayed(2500) {
             finish()
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
 }

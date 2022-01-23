@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.alarmproject.R
 import com.example.alarmproject.databinding.ActivitySignUpBinding
 import com.example.alarmproject.util.extension.repeatOnStarted
@@ -23,6 +25,11 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>(R.la
         super.onCreate(savedInstanceState)
         registerObservers()
         listenToChannels()
+
+        Glide.with(binding.root.context)
+            .load(R.drawable.ic_launcher_foreground)
+            .apply(RequestOptions().circleCrop())
+            .into(binding.ivProfile)
     }
 
     fun onCreateUser(view: View) {

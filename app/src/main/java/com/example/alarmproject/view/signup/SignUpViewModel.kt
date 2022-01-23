@@ -22,6 +22,8 @@ class SignUpViewModel @Inject constructor(private val repository: BaseAuthReposi
     private val _firebaseUser = MutableLiveData<FirebaseUser?>()
     val currentUser get() = _firebaseUser
 
+    var profileUrl : String = "http://placeimg.com/640/480/any"
+
     fun signInUser(email: String, password: String) = viewModelScope.launch {
         when {
             email.isEmpty() -> {

@@ -3,7 +3,7 @@ package com.example.alarmproject.view.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.alarmproject.R
 import com.example.alarmproject.databinding.FragmentHomeBinding
@@ -19,11 +19,7 @@ import com.example.alarmproject.view.base.BaseRecyclerView
 import com.example.alarmproject.view.base.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
@@ -70,6 +66,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         getTestAlarmData()
         initCollector()
         initAdapter()
+
+        binding.fabAdd.setOnClickListener { goAddAlarm() }
     }
 
     private fun getTestAlarmData() {
@@ -125,5 +123,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
         if (etcAdapter.itemCount < 1)
             etcAdapter.replaceAll(data.alarmList)
+    }
+
+    private fun goAddAlarm() {
+        Navigation.findNavController(binding.root).navigate(R.id.action_homeFragment_to_alarmEditFragment)
     }
 }
