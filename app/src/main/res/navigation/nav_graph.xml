@@ -18,5 +18,14 @@
         android:id="@+id/alarmEditFragment"
         android:name="com.example.alarmproject.view.alarmedit.AlarmEditFragment"
         android:label="fragment_alarm_edit"
-        tools:layout="@layout/fragment_alarm_edit" />
+        tools:layout="@layout/fragment_alarm_edit" >
+        <action
+            android:id="@+id/action_alarmEditFragment_to_alarmEditPropertyFragment"
+            app:destination="@id/alarmEditPropertyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/alarmEditPropertyFragment"
+        android:name="com.example.alarmproject.view.alarmedit.AlarmEditPropertyFragment"
+        android:label="fragment_alarm_edit_property"
+        tools:layout="@layout/fragment_alarm_edit_property" />
 </navigation>

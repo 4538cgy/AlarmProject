@@ -11,6 +11,7 @@
     <string name="word_woman">여자</string>
     <string name="word_man">남자</string>
     <string name="word_input_limit_8">한글, 영문, 숫자 8자 이내 입력</string>
+    <string name="word_alarm_add">알람 추가</string>
 
     <string name="activity_splash_tv_name">클릭째깍</string>
 

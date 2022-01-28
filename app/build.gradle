@@ -61,6 +61,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-inappmessaging-display-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
 
     //lottie
     implementation 'com.airbnb.android:lottie:4.1.0'

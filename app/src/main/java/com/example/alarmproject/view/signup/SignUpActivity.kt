@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.InputFilter
 import android.view.View
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.alarmproject.R
 import com.example.alarmproject.databinding.ActivitySignUpBinding
 import com.example.alarmproject.model.user.User
@@ -17,6 +15,7 @@ import com.example.alarmproject.util.extension.filterKorEngNum
 import com.example.alarmproject.util.extension.isNotNullOrEmpty
 import com.example.alarmproject.util.extension.repeatOnStarted
 import com.example.alarmproject.util.extension.showToastLong
+import com.example.alarmproject.util.system.ProgressDialog
 import com.example.alarmproject.view.base.BaseActivity
 import com.example.alarmproject.view.base.BaseViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -62,6 +61,12 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>(R.la
 
         viewModel.isContainUser.observe(this) {
             println("테스트 유저가 존재하나요? $it")
+            if (it){
+                println("이미 유저가 존재하는 유저 입니다. 해당 아이디로 로그인 합니다.")
+                if (auth.currentUser != null) {
+                    println("로그인 완료~~")
+                }
+            }
         }
 
         viewModel.profileImageUri.observe(this){
@@ -116,7 +121,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>(R.la
     }
 
     private fun uploadUserData() {
-        viewModel.setUserInfo(getCurrentUserData())
+        //dialog 시작
+        ProgressDialog.show(this)
+        viewModel.uploadUserInfo(getCurrentUserData())
     }
 
     private fun initFlowHanlder() {
@@ -125,9 +132,12 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>(R.la
                 when (it) {
                     is BaseViewModel.Result.Success -> {
                         println("${it.data.message}")
+                        //Dialog 종료
+                        ProgressDialog.dismiss()
                     }
                     is BaseViewModel.Result.Error -> {
                         println("${it.exception}")
+                        //업로드 실패 처리 해주셈
                     }
                 }
             }

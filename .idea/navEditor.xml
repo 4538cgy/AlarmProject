@@ -20,6 +20,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="alarmEditPropertyFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-24" />
+                            <option name="y" value="28" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="homeFragment">
                     <value>
                       <LayoutPositions>
@@ -37,30 +49,6 @@
                               </value>
                             </entry>
                           </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="signUpActivity">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-589" />
-                            <option name="y" value="29" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="splashActivity">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-749" />
-                            <option name="y" value="26" />
-                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

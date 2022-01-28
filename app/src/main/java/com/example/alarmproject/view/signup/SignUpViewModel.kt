@@ -11,6 +11,7 @@ import com.example.alarmproject.util.flow.MutableEventFlow
 import com.example.alarmproject.view.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
@@ -34,14 +35,24 @@ class SignUpViewModel @Inject constructor(private val repository: UserRepository
         currentNickName.value = clearSpecialText(s.toString())
     }
 
-    fun setUserInfo(data : User){
+    fun uploadUserInfo(data : User){
         viewModelScope.launch {
-            val response = repository.setUser(data)
-            if (response.isSuccess){
-                userRequestFlow.emit(Result.Success(response))
-            }else{
-                userRequestFlow.emit(Result.Error(response.exception?:return@launch))
+            //사진 업로드하고 다운로드 url 나오면
+            val responseUploadImage = repository.uploadProfileImage(data.uid.toString(), Uri.parse(profileImageUri.value.toString()))
+            responseUploadImage.collect {
+                data.profileImageUrl = it.storageModel?.downloadUrl
+                uploadUserData(data)
             }
+        }
+    }
+
+    suspend fun uploadUserData(data : User){
+        //회원 정보 업로드
+        val responseUploadUserData = repository.setUser(data)
+        if (responseUploadUserData.isSuccess){
+            userRequestFlow.emit(Result.Success(responseUploadUserData))
+        }else{
+            userRequestFlow.emit(Result.Error(responseUploadUserData.exception?:return))
         }
     }
 

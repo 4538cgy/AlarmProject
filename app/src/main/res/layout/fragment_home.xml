@@ -130,6 +130,10 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_margin="16dp"
+            app:srcCompat="@drawable/ic_add_gray"
+            app:backgroundTint="@color/color_DE86B0"
+            app:background="@color/white"
+            app:tint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
