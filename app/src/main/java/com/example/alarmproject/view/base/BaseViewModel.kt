@@ -8,16 +8,8 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel : ViewModel() {
-    private val _eventFlow = MutableEventFlow<Event>()
-    val eventFlow = _eventFlow.asEventFlow()
 
     var disposable = CompositeDisposable()
-
-    open fun event(event: Event) {
-        viewModelScope.launch {
-            _eventFlow.emit(event)
-        }
-    }
 
     sealed class Result<out R> {
         data class Success<out T>(val data: T) : Result<T>()
@@ -26,10 +18,6 @@ abstract class BaseViewModel : ViewModel() {
         data class Message(val message: String) : Result<String>()
     }
 
-    sealed class Event {
-        data class TouchEvent(val value: Any) : Event()
-        data class ResponseCommonData<ITEM>(val value: ITEM) : Event()
-    }
     override fun onCleared() {
         super.onCleared()
         disposable.clear()

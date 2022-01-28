@@ -25,11 +25,13 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginTop="62dp"
+            android:background="@drawable/ic_profile_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/iv_profile_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_bg_white_circle"
@@ -155,6 +157,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_complete"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

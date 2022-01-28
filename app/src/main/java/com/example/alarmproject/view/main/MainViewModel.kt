@@ -6,7 +6,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor() : BaseViewModel() {
-    fun test(){
-        event(Event.TouchEvent("test"))
-    }
+
 }

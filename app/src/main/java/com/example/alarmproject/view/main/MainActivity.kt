@@ -20,18 +20,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.a
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Logger.process(this.toString())
-        repeatOnStarted {
-            viewModel.eventFlow.collect { eventHandle(it) }
-        }
     }
-
-    private fun eventHandle(event: BaseViewModel.Event) = when (event) {
-        is BaseViewModel.Event.TouchEvent -> {
-            //todo
-        }
-        else -> {
-        }
-    }
-
-
 }
