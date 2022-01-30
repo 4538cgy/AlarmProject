@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.alarmproject.model.alarm.VHAlarmWeekend" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
+        >
+
+        <ImageView
+            android:id="@+id/iv_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_alarm_black"
+            android:visibility="@{data.isChecked ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/iv_alarm"
+            app:layout_constraintStart_toStartOf="@id/iv_alarm"
+            app:layout_constraintTop_toTopOf="@id/iv_alarm"
+            app:layout_constraintBottom_toBottomOf="@id/iv_alarm"
+            android:textSize="12dp"
+            android:textColor="@color/black"
+            android:text="@{data.weekend}"
+            tools:text="월"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

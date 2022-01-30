@@ -18,6 +18,7 @@ import com.example.alarmproject.util.extension.showToastLong
 import com.example.alarmproject.util.system.ProgressDialog
 import com.example.alarmproject.view.base.BaseActivity
 import com.example.alarmproject.view.base.BaseViewModel
+import com.example.alarmproject.view.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -64,12 +65,13 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>(R.la
             if (it){
                 println("이미 유저가 존재하는 유저 입니다. 해당 아이디로 로그인 합니다.")
                 if (auth.currentUser != null) {
-                    println("로그인 완료~~")
+                    startActivity(Intent(this,MainActivity::class.java))
                 }
             }
         }
 
         viewModel.profileImageUri.observe(this){
+            it?:return@observe
             if (it.toString().isNotNullOrEmpty()) binding.ivProfileAdd.visibility = View.INVISIBLE
         }
 
