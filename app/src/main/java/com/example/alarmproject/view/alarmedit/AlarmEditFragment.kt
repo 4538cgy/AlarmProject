@@ -2,6 +2,7 @@ package com.example.alarmproject.view.alarmedit
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.alarmproject.BR
@@ -19,12 +20,14 @@ import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Compa
 import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_WEDNESDAY
 import com.example.alarmproject.view.base.BaseFragment
 import com.example.alarmproject.view.base.BaseRecyclerView
+import com.example.alarmproject.view.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AlarmEditFragment : BaseFragment<FragmentAlarmEditBinding, AlarmEditViewModel>(R.layout.fragment_alarm_edit) {
 
     override val viewModel: AlarmEditViewModel by viewModels()
+    private val activityViewModels : MainViewModel by activityViewModels()
 
     private val propertyAdapter = BaseRecyclerView.Adapter<VHAlarmProperty, VhAlarmPropertyBinding>(
         layoutResId = R.layout.vh_alarm_property,
@@ -43,7 +46,7 @@ class AlarmEditFragment : BaseFragment<FragmentAlarmEditBinding, AlarmEditViewMo
         initAdapter()
 
         binding.ibBack.setOnClickListener {
-
+            Navigation.findNavController(binding.root).navigate(R.id.action_alarmEditFragment_to_homeFragment)
         }
     }
 
@@ -89,6 +92,8 @@ class AlarmEditFragment : BaseFragment<FragmentAlarmEditBinding, AlarmEditViewMo
     }
 
     private fun onTouchProperty(data: Pair<VHAlarmProperty, Int>) {
+        activityViewModels.selectedPropertyTitle.value = data.first
+        goEditProperty()
         println("테스트 ${data.first}   ${data.second}")
     }
 

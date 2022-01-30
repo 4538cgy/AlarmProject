@@ -22,10 +22,17 @@
         <action
             android:id="@+id/action_alarmEditFragment_to_alarmEditPropertyFragment"
             app:destination="@id/alarmEditPropertyFragment" />
+        <action
+            android:id="@+id/action_alarmEditFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/alarmEditPropertyFragment"
         android:name="com.example.alarmproject.view.alarmedit.AlarmEditPropertyFragment"
         android:label="fragment_alarm_edit_property"
-        tools:layout="@layout/fragment_alarm_edit_property" />
+        tools:layout="@layout/fragment_alarm_edit_property" >
+        <action
+            android:id="@+id/action_alarmEditPropertyFragment_to_alarmEditFragment"
+            app:destination="@id/alarmEditFragment" />
+    </fragment>
 </navigation>
