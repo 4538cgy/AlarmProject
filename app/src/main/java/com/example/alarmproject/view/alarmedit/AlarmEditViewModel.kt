@@ -11,6 +11,7 @@ class AlarmEditViewModel @Inject constructor() : BaseViewModel() {
 
     val nextAlarmNotice = MutableLiveData<Long>()
     val timeText = MutableLiveData<String>()
+    val pickTime = MutableLiveData<Pair<Int,Int>>()
 
     fun getNextAlarmText() = NEXT_ALARM_NOTICE_FIRST_TEXT + nextAlarmNotice.value?.let { formatHourMinute(it) } + NEXT_ALARM_NOTICE_LAST_TEXT
 

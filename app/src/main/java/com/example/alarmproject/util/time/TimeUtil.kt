@@ -62,3 +62,17 @@ fun formatCloseTimeString(regTime: Long): String? {
 
     return msg
 }
+
+fun getNextTime(i : Int, i2 : Int) : String{
+    val timezone = TimeZone.getTimeZone("Asia/seoul")
+    val currentTime = System.currentTimeMillis()
+    val currentHour = SimpleDateFormat("HH").format(Date(currentTime))
+    val currentMinute = SimpleDateFormat("mm").format(Date(currentTime))
+    val currentMilliseconds = currentHour.toLong()*60*60*1000 + currentMinute.toLong()*60*1000
+    val nextCurrentTime = i*60*60*1000 + i2*60*1000
+    val resultTime = nextCurrentTime - currentMilliseconds
+    var result = SimpleDateFormat("HH시간 mm분",Locale.KOREAN)
+    result.timeZone = timezone
+
+    return result.format(Date(resultTime))
+}

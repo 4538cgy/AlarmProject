@@ -5,6 +5,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.example.alarmproject.R
@@ -30,6 +32,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.a
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Logger.process(this.toString())
+    }
+
+    override fun onCreateView(parent: View?, name: String, context: Context, attrs: AttributeSet): View? {
+        if (viewModel.auth.currentUser != null){
+            viewModel.getMyProfileData(viewModel.auth.currentUser?.uid.toString())
+        }
+        return super.onCreateView(parent, name, context, attrs)
     }
 
     open fun setAlarm(){

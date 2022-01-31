@@ -1,4 +1,4 @@
-package com.example.alarmproject.util.firebase
+package com.example.alarmproject.util.firebase.storage
 
 import com.google.firebase.storage.FirebaseStorage
 import dagger.Module

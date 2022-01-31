@@ -18,6 +18,7 @@ import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Compa
 import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_THURSDAY
 import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_TUESDAY
 import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_WEDNESDAY
+import com.example.alarmproject.util.time.getNextTime
 import com.example.alarmproject.view.base.BaseFragment
 import com.example.alarmproject.view.base.BaseRecyclerView
 import com.example.alarmproject.view.main.MainViewModel
@@ -45,8 +46,14 @@ class AlarmEditFragment : BaseFragment<FragmentAlarmEditBinding, AlarmEditViewMo
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
 
+        binding.tvNextAlarmNotice.text = "지금부터 ${getNextTime(binding.tpTime.hour,binding.tpTime.minute)} 뒤에 알림"
+
         binding.ibBack.setOnClickListener {
             Navigation.findNavController(binding.root).navigate(R.id.action_alarmEditFragment_to_homeFragment)
+        }
+        binding.tpTime.setOnTimeChangedListener { timePicker, i, i2 ->
+            viewModel.pickTime.value = Pair(i,i2)
+            binding.tvNextAlarmNotice.text = "지금부터 ${getNextTime(i,i2)} 뒤에 알림"
         }
     }
 

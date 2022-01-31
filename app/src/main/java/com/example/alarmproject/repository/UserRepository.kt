@@ -41,7 +41,9 @@ class UserRepository @Inject constructor(private val db: FirebaseFirestore, priv
         val eventListener = storage.reference.child("UserProfileImages").child(uid)
         val responseModel = BaseFirebaseModel()
         eventListener.putFile(imageUri).continueWithTask { task: Task<UploadTask.TaskSnapshot> ->
-            if (!task.isSuccessful) { task.exception?.let { throw it } }
+            if (!task.isSuccessful) {
+                task.exception?.let { throw it }
+            }
             eventListener.downloadUrl
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -52,6 +54,19 @@ class UserRepository @Inject constructor(private val db: FirebaseFirestore, priv
             }
         }
 
+        awaitClose { eventListener }
+    }
+
+    @ExperimentalCoroutinesApi
+    fun getMyProfile(uid: String) = callbackFlow {
+        val eventListener = db.collection("User").document(uid).get().addOnCompleteListener {
+            it?.let{
+                if (it.isSuccessful){
+                    val data = it.result.toObject(User::class.java)
+                    this@callbackFlow.trySendBlocking(data)
+                }
+            }
+        }
         awaitClose { eventListener }
     }
 }

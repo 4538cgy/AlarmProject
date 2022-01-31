@@ -1,4 +1,4 @@
-package com.example.alarmproject.util.firebase
+package com.example.alarmproject.util.firebase.firestore
 
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
