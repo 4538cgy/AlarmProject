@@ -20,11 +20,9 @@ class MainViewModel @Inject constructor(private val repository: UserRepository) 
 
     val auth = FirebaseAuth.getInstance()
 
-    fun getMyProfileData(uid : String){
+    fun getMyProfileData(uid: String) {
         viewModelScope.launch {
-            repository.getMyProfile(uid).collect {
-                profileData.postValue(it)
-            }
+            profileData.postValue(repository.getMyProfile(uid))
         }
     }
 }

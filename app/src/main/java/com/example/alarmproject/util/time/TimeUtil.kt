@@ -3,9 +3,9 @@ package com.example.alarmproject.util.time
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun getTime() = SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분 ss초").format(Date(System.currentTimeMillis())).toString()
+fun getTime() = SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분 ss초",Locale.KOREAN).format(Date(System.currentTimeMillis())).toString()
 
-fun formatHourMinute(millisecond: Long) = SimpleDateFormat("hh시 mm분").format(Date(millisecond)).toString()
+fun formatHourMinute(millisecond: Long) = SimpleDateFormat("hh시 mm분",Locale.KOREAN).format(Date(millisecond)).toString()
 
 /** 몇분전, 방금 전,  */
 private object TIME_MAXIMUM {
@@ -66,8 +66,8 @@ fun formatCloseTimeString(regTime: Long): String? {
 fun getNextTime(i : Int, i2 : Int) : String{
     val timezone = TimeZone.getTimeZone("Asia/seoul")
     val currentTime = System.currentTimeMillis()
-    val currentHour = SimpleDateFormat("HH").format(Date(currentTime))
-    val currentMinute = SimpleDateFormat("mm").format(Date(currentTime))
+    val currentHour = SimpleDateFormat("HH",Locale.KOREAN).format(Date(currentTime))
+    val currentMinute = SimpleDateFormat("mm",Locale.KOREAN).format(Date(currentTime))
     val currentMilliseconds = currentHour.toLong()*60*60*1000 + currentMinute.toLong()*60*1000
     val nextCurrentTime = i*60*60*1000 + i2*60*1000
     val resultTime = nextCurrentTime - currentMilliseconds

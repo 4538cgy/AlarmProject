@@ -35,33 +35,28 @@ class SignUpViewModel @Inject constructor(private val repository: UserRepository
         currentNickName.value = clearSpecialText(s.toString())
     }
 
-    fun uploadUserInfo(data : User){
+    fun uploadUserInfo(data: User) {
         viewModelScope.launch {
             //사진 업로드하고 다운로드 url 나오면
             val responseUploadImage = repository.uploadProfileImage(data.uid.toString(), Uri.parse(profileImageUri.value.toString()))
-            responseUploadImage.collect {
-                data.profileImageUrl = it.storageModel?.downloadUrl
-                uploadUserData(data)
-            }
+            data.profileImageUrl = responseUploadImage.storageModel?.downloadUrl
+            uploadUserData(data)
         }
     }
 
-    suspend fun uploadUserData(data : User){
+    suspend fun uploadUserData(data: User) {
         //회원 정보 업로드
         val responseUploadUserData = repository.setUser(data)
-        if (responseUploadUserData.isSuccess){
+        if (responseUploadUserData.isSuccess) {
             userRequestFlow.emit(Result.Success(responseUploadUserData))
-        }else{
-            userRequestFlow.emit(Result.Error(responseUploadUserData.exception?:return))
+        } else {
+            userRequestFlow.emit(Result.Error(responseUploadUserData.exception ?: return))
         }
     }
 
-    fun isContainUser(uid : String){
+    fun isContainUser(uid: String) {
         viewModelScope.launch {
-            repository.isExistsUser(uid).collect {
-                println("유저 체크 $it")
-                isContainUser.postValue(it)
-            }
+            isContainUser.postValue(repository.isExistsUser(uid))
         }
     }
 }

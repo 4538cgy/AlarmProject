@@ -12,32 +12,38 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 class UserRepository @Inject constructor(private val db: FirebaseFirestore, private val storage: FirebaseStorage) {
 
-    fun setUser(user: User): BaseFirebaseModel {
+    suspend fun setUser(user : User) = suspendCancellableCoroutine<BaseFirebaseModel> { continaution ->
         var response = BaseFirebaseModel()
         val collection = db.collection("User")
         collection.document(user.uid.toString()).set(user).addOnSuccessListener {
             response.message = "User Data Write Success"
             response.isSuccess = true
-        }.addOnFailureListener { e -> response.exception = e }
-        return response
+            continaution.resume(response)
+        }.addOnFailureListener { e ->
+            continaution.resumeWithException(e)
+        }
     }
 
-    @ExperimentalCoroutinesApi
-    fun isExistsUser(uid: String) = callbackFlow {
+    suspend fun isExistsUser(uid : String) = suspendCancellableCoroutine<Boolean> { c ->
         val collection = db.collection("User").whereEqualTo("uid", uid)
         collection.get().addOnSuccessListener {
-            this@callbackFlow.trySendBlocking(true)
+            if (!it.isEmpty)
+            c.resume(true)
+        }.addOnFailureListener {
+            c.resumeWithException(it)
         }
-        awaitClose { collection }
     }
 
-    @ExperimentalCoroutinesApi
-    fun uploadProfileImage(uid: String, imageUri: Uri) = callbackFlow {
+    suspend fun uploadProfileImage(uid: String, imageUri: Uri) = suspendCancellableCoroutine<BaseFirebaseModel> { c ->
         val eventListener = storage.reference.child("UserProfileImages").child(uid)
         val responseModel = BaseFirebaseModel()
         eventListener.putFile(imageUri).continueWithTask { task: Task<UploadTask.TaskSnapshot> ->
@@ -50,23 +56,23 @@ class UserRepository @Inject constructor(private val db: FirebaseFirestore, priv
                 responseModel.message = "Profile Image Upload Success"
                 responseModel.isSuccess = true
                 responseModel.storageModel = BaseFirebaseModel.StorageModel(task.result.toString())
-                this@callbackFlow.trySendBlocking(responseModel)
+                c.resume(responseModel)
             }
+        }.addOnFailureListener {
+            c.resumeWithException(it)
         }
-
-        awaitClose { eventListener }
     }
 
-    @ExperimentalCoroutinesApi
-    fun getMyProfile(uid: String) = callbackFlow {
-        val eventListener = db.collection("User").document(uid).get().addOnCompleteListener {
+    suspend fun getMyProfile(uid: String) = suspendCancellableCoroutine<User> { c ->
+        db.collection("User").document(uid).get().addOnCompleteListener {
             it?.let{
                 if (it.isSuccessful){
                     val data = it.result.toObject(User::class.java)
-                    this@callbackFlow.trySendBlocking(data)
+                    c.resume(data?:return@addOnCompleteListener)
                 }
             }
+        }.addOnFailureListener {
+            c.resumeWithException(it)
         }
-        awaitClose { eventListener }
     }
 }

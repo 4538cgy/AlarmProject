@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="18dp"
                     android:layout_marginTop="66dp"
-                    android:drawableLeft="@drawable/ic_alarm_clock"
+                    android:drawableStart="@drawable/ic_alarm_clock"
                     android:drawablePadding="8dp"
                     android:text="지금부터 4시간 30분 뒤에 알림"
                     android:textColor="@color/white"
