@@ -1,5 +1,10 @@
 package com.example.alarmproject.model.user
 
-class User {
-    val name : String = "식별되지않은 회원"
-}
+data class User(
+    var uid: String? = null,
+    var profileImageUrl: String? = null,
+    var name: String? = null,
+    var gender: String? = null,
+    var email: String? = null,
+    var timestamp: Long? = null
+)

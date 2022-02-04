@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ImageView">
+        <attr name="radius" format="float" />
+        <attr name="url" format="string" />
+        <attr name="border_width" format="float" />
+        <attr name="border_color" format="integer" />
+    </declare-styleable>
+</resources>
