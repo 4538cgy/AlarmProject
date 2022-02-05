@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.alarmproject">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
@@ -22,6 +22,8 @@
         <activity
             android:name=".view.main.MainActivity"
             android:exported="true" />
+
+        <activity android:name=".view.wakeup.WakeupActivity" />
 
         <activity
             android:name=".view.spalsh.SplashActivity"
