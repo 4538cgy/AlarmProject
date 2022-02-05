@@ -45,9 +45,7 @@ class AlarmReceiver : BroadcastReceiver() {
         notificationChannel.lightColor = Color.RED // 색상
         notificationChannel.enableVibration(true) // 진동 여부
         notificationChannel.description = "채널의 상세정보입니다." // 채널 정보
-        notificationManager.createNotificationChannel(
-            notificationChannel
-        )
+        notificationManager.createNotificationChannel(notificationChannel)
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
