@@ -11,7 +11,7 @@ data class VHAlarmWeekend(
             const val PROPERTY_WEDNESDAY = "수"
             const val PROPERTY_THURSDAY = "목"
             const val PROPERTY_FRIDAY = "금"
-            const val PROPERTY_SETURDAY = "토"
+            const val PROPERTY_SATURDAY = "토"
             const val PROPERTY_SUNDAY = "일"
         }
     }
