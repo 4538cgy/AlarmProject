@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.media.RingtoneManager
 import android.os.Build
 import android.os.PowerManager
 import androidx.core.app.NotificationCompat
@@ -72,6 +73,9 @@ class AlarmReceiver : BroadcastReceiver() {
              */
         )
 
+        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+            ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+            ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_alarm_clock) // 아이콘
             .setContentTitle("타이틀 입니다.") // 제목
@@ -79,6 +83,7 @@ class AlarmReceiver : BroadcastReceiver() {
             .setContentIntent(contentPendingIntent)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setAutoCancel(true)
+            .setSound(alarmSound)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
 
         notificationManager.notify(NOTIFICATION_ID, builder.build())
