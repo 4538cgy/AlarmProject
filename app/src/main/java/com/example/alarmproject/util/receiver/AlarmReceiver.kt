@@ -16,7 +16,6 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private lateinit var notificationManager: NotificationManager
 
-
     override fun onReceive(p0: Context?, p1: Intent?) {
         notificationManager = p0?.getSystemService(
             Context.NOTIFICATION_SERVICE
@@ -50,6 +49,10 @@ class AlarmReceiver : BroadcastReceiver() {
         }
     }
 
+    // https://stackoverflow.com/questions/30090589/turn-on-screen-programmatically-on-android
+    // https://stackoverflow.com/questions/30199380/how-to-show-android-notifications-on-screen-as-well-as-status-bar-icon
+    // https://stackoverflow.com/questions/35994055/show-notifications-on-screen-in-android
+    // https://stackoverflow.com/questions/7442670/android-how-to-show-notification-on-screen
     private fun deliverNotification(context: Context) {
         val contentIntent = Intent(context, MainActivity::class.java)
         val contentPendingIntent = PendingIntent.getActivity(
@@ -70,7 +73,7 @@ class AlarmReceiver : BroadcastReceiver() {
             .setContentTitle("타이틀 입니다.") // 제목
             .setContentText("내용 입니다.") // 내용
             .setContentIntent(contentPendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
             .setAutoCancel(true)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
 
