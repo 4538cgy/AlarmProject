@@ -23,8 +23,20 @@
             android:id="@+id/action_alarmEditFragment_to_alarmEditPropertyFragment"
             app:destination="@id/alarmEditPropertyFragment" />
         <action
+            android:id="@+id/action_alarmEditFragment_to_alarmSoundFragment"
+            app:destination="@id/alarmSoundFragment"/>
+        <action
             android:id="@+id/action_alarmEditFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/alarmSoundFragment"
+        android:name="com.example.alarmproject.view.alarmedit.sound.AlarmSoundFragment"
+        android:label="@string/alarm_sound"
+        tools:layout="@layout/fragment_alarm_sound">
+        <action
+            android:id="@+id/action_alaramSoundFragment_to_alaramEditFragment"
+            app:destination="@id/alarmEditFragment"/>
     </fragment>
     <fragment
         android:id="@+id/alarmEditPropertyFragment"

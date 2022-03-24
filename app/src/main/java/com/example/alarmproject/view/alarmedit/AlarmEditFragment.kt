@@ -98,9 +98,16 @@ class AlarmEditFragment : BaseFragment<FragmentAlarmEditBinding, AlarmEditViewMo
         Navigation.findNavController(binding.root).navigate(R.id.action_alarmEditFragment_to_alarmEditPropertyFragment)
     }
 
+    private fun goSoundProperty() {
+        Navigation.findNavController(binding.root).navigate(R.id.action_alarmEditFragment_to_alarmSoundFragment)
+    }
+
     private fun onTouchProperty(data: Pair<VHAlarmProperty, Int>) {
         activityViewModels.selectedPropertyTitle.value = data.first
-        goEditProperty()
+        when(data.first.title) {
+            "사운드" -> goSoundProperty()
+            else -> goEditProperty()
+        }
         println("테스트 ${data.first}   ${data.second}")
     }
 
