@@ -13,7 +13,7 @@ import com.example.alarmproject.model.alarm.VHAlarmProperty
 import com.example.alarmproject.model.alarm.VHAlarmWeekend
 import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_FRIDAY
 import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_MONDAY
-import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_SETURDAY
+import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_SATURDAY
 import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_SUNDAY
 import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_THURSDAY
 import com.example.alarmproject.model.alarm.VHAlarmWeekend.WeekendProperty.Companion.PROPERTY_TUESDAY
@@ -87,7 +87,7 @@ class AlarmEditFragment : BaseFragment<FragmentAlarmEditBinding, AlarmEditViewMo
             add(VHAlarmWeekend(PROPERTY_WEDNESDAY, false))
             add(VHAlarmWeekend(PROPERTY_THURSDAY, false))
             add(VHAlarmWeekend(PROPERTY_FRIDAY, false))
-            add(VHAlarmWeekend(PROPERTY_SETURDAY, false))
+            add(VHAlarmWeekend(PROPERTY_SATURDAY, false))
             add(VHAlarmWeekend(PROPERTY_SUNDAY, false))
         }
         weekendAdapter.replaceAll(weekendList)
