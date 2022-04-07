@@ -19,4 +19,6 @@
     <string name="layout_wakeup_daily_alarm">주간 알람</string>
     <string name="layout_wakeup_btn_stop_alarm">알람 중단</string>
     <string name="layout_wakeup_notice">진짜 일어나셨을때만 누르세요!!</string>
+
+    <string name="alarm_sound">사운드</string>
 </resources>
